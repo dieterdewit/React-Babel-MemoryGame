@@ -10,6 +10,7 @@ class Honkai extends React.Component {
         };
         this.start();
     }
+
     clicks(gatcha, index) {
         if (this.state.gatchaCards.length == 2) {
             setTimeout(() => {
@@ -35,6 +36,7 @@ class Honkai extends React.Component {
             }
         }
     }
+
     check() {
         let finalCards = this.state.finalCards;
         if (this.state.gatchaCards[0].gatcha == this.state.gatchaCards[1].gatcha && this.state.gatchaCards[0].index != this.state.gatchaCards[1].index) {
@@ -48,6 +50,7 @@ class Honkai extends React.Component {
             finalCards,
             gatchaCards: [] });
     }
+
     start() {
         let finalCards = [];
         this.state.double_team = this.state.valkirja.concat(this.state.valkirja);
@@ -61,17 +64,15 @@ class Honkai extends React.Component {
         });
         this.state.finalCards = finalCards;
     }
+
     shuffle(array) {
-        let currentIndex = array.length,temporaryValue,randomIndex;
-        while (0 !== currentIndex) {
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
-          temporaryValue = array[currentIndex];
-          array[currentIndex] = array[randomIndex];
-          array[randomIndex] = temporaryValue;
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
         }
         return array;
     }
+
     render() {
         return (
           React.createElement("div", { className: "honkai" },
@@ -82,14 +83,17 @@ class Honkai extends React.Component {
     }
 }
 
+
 class Card extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
     }
+
     clicked(valk) {
         this.props.click(valk);
     }
+
     render() {
         return (
             React.createElement("div", { className: "card" + (!this.props.close ? ' opened' : '') + (this.props.complete ? ' matched' : ''), onClick: () => this.clicked(this.props.valk) },
@@ -102,4 +106,5 @@ class Card extends React.Component {
     }
 }
   
+
 ReactDOM.render(React.createElement(Honkai, null), document.getElementById('app'));
