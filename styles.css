@@ -1,30 +1,21 @@
 body {
-    background: #adbf;
+    background-image: url("./images/hyperion.jpg");
 }
   
 #app {
-    padding: 35px;
-    width: 40%;
+    padding: 50px;
+    width: 60%;
     margin: 20px auto;
-    border-radius: 10px;
 }
 
 #app .honkai {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    -webkit-perspective: 1000px;
-            perspective: 1000px;
-    margin-bottom: -15px;
 }
   
 #app .honkai .card {
-    width: 15%;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-    height: 110px;
+    width: 25%;
+    height: 175px;
     padding: 10px;
     box-sizing: border-box;
     text-align: center;
@@ -45,14 +36,12 @@ body {
     height: 100%;
     border-radius: 10px;
     transition: 0.6s;
-    background: #f4f5f7;
 }
 
 #app .honkai .card .front {
     font-size: 50px;
     line-height: 120px;
     cursor: pointer;
-    color: #b9bfcc;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,12 +50,6 @@ body {
 #app .honkai .card .back {
     -webkit-transform: rotateY(180deg);
             transform: rotateY(180deg);
-    line-height: 110px;
-}
-
-#app .honkai .card .back img {
-    vertical-align: middle;
-    width: 70%;
 }
 
 #app .honkai .card.opened {
@@ -74,52 +57,7 @@ body {
             transform: rotateY(180deg);
 }
 
-#app .honkai .card.matched {
-    -webkit-transform: rotateY(180deg);
-            transform: rotateY(180deg);
-}
-
 #app .honkai .card.matched .back {
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05) inset;
-    -webkit-animation: selected .8s 0s ease 1;
-            animation: selected .8s 0s ease 1;
-    -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
-    opacity: .2;
+    opacity: .4;
 }
 
-@-webkit-keyframes selected {
-    0% {
-      opacity: .2;
-    }
-    30% {
-      opacity: .5;
-    }
-    50% {
-      opacity: .9;
-    }
-    70% {
-      opacity: .2;
-    }
-    100% {
-      opacity: .3;
-    }
-}
-
-@keyframes selected {
-    0% {
-      opacity: .2;
-    }
-    30% {
-      opacity: .5;
-    }
-    50% {
-      opacity: .9;
-    }
-    70% {
-      opacity: .2;
-    }
-    100% {
-      opacity: .3;
-    }
-}

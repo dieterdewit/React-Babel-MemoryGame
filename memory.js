@@ -10,34 +10,34 @@ class Honkai extends React.Component {
         };
         this.start();
     }
-    clicks(card, index) {
+    clicks(gatcha, index) {
         if (this.state.gatchaCards.length == 2) {
             setTimeout(() => {
                 this.check();
-            }, 750);
+            }, 666);
         } else {
             let valk = {
-                card,
+                gatcha,
                 index };
 
-                let finalCards = this.state.finalCards;
-                let valkirja = this.state.gatchaCards;
-                finalCards[index].close = false;
-                valkirja.push(valk);
-                this.setState({
-                    gatchaCards: valkirja,
-                    finalCards: finalCards });
+            let finalCards = this.state.finalCards;
+            let valkirja = this.state.gatchaCards;
+            finalCards[index].close = false;
+            valkirja.push(valk);
+            this.setState({
+                gatchaCards: valkirja,
+                finalCards: finalCards });
           
-                if (this.state.gatchaCards.length == 2) {
-                    setTimeout(() => {
+            if (this.state.gatchaCards.length == 2) {
+                setTimeout(() => {
                     this.check();
-                }, 750);
+                }, 666);
             }
         }
     }
     check() {
         let finalCards = this.state.finalCards;
-        if (this.state.gatchaCards[0].card == this.state.gatchaCards[1].card && this.state.gatchaCards[0].index != this.state.gatchaCards[1].index) {
+        if (this.state.gatchaCards[0].gatcha == this.state.gatchaCards[1].gatcha && this.state.gatchaCards[0].index != this.state.gatchaCards[1].index) {
             finalCards[this.state.gatchaCards[0].index].complete = true;
             finalCards[this.state.gatchaCards[1].index].complete = true;
         } else {
@@ -52,12 +52,12 @@ class Honkai extends React.Component {
         let finalCards = [];
         this.state.double_team = this.state.valkirja.concat(this.state.valkirja);
         this.state.randomCards = this.shuffle(this.state.double_team);
-        this.state.randomCards.map((card, index) => {
+        this.state.randomCards.map((gatcha) => {
             finalCards.push({
-            card,
-            close: true,
-            complete: false,
-            fail: false });
+                gatcha,
+                close: true,
+                complete: false,
+                fail: false });
         });
         this.state.finalCards = finalCards;
     }
@@ -74,10 +74,10 @@ class Honkai extends React.Component {
     }
     render() {
         return (
-          React.createElement("div", { className: "honaki" },
+          React.createElement("div", { className: "honkai" },
 
           this.state.finalCards.map((valk, index) => {
-            return React.createElement(Card, { valk: valk.card, click: () => {this.clicks(valk.card, index);}, close: valk.close, complete: valk.complete });
+            return React.createElement(Card, { valk: valk.gatcha, click: () => {this.clicks(valk.gatcha, index);}, close: valk.close, complete: valk.complete });
           })));
     }
 }
@@ -93,7 +93,9 @@ class Card extends React.Component {
     render() {
         return (
             React.createElement("div", { className: "card" + (!this.props.close ? ' opened' : '') + (this.props.complete ? ' matched' : ''), onClick: () => this.clicked(this.props.valk) },
-            React.createElement("div", { className: "front" }, "?"),
+
+            React.createElement("div", { className: "front" },
+            React.createElement("img", { src: "./images/Card.png"})),
   
             React.createElement("div", { className: "back" },
             React.createElement("img", { src: "./images/" + this.props.valk + ".png" }))));
