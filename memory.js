@@ -6,7 +6,8 @@ class Honkai extends React.Component {
             double_team: [],
             randomCards: [],
             finalCards: [],
-            gatchaCards: []
+            gatchaCards: [],
+            daishouri: false
         };
         this.start();
     }
@@ -39,6 +40,7 @@ class Honkai extends React.Component {
 
     check() {
         let finalCards = this.state.finalCards;
+        let teriteri = this.state.daishouri;
         if (this.state.gatchaCards[0].gatcha == this.state.gatchaCards[1].gatcha && this.state.gatchaCards[0].index != this.state.gatchaCards[1].index) {
             finalCards[this.state.gatchaCards[0].index].complete = true;
             finalCards[this.state.gatchaCards[1].index].complete = true;
@@ -46,9 +48,21 @@ class Honkai extends React.Component {
             finalCards[this.state.gatchaCards[0].index].close = true;
             finalCards[this.state.gatchaCards[1].index].close = true;
         }
+        let counter = 0;
+        finalCards.forEach((gatcha) => {
+            if(gatcha.complete) {
+                counter ++;
+                console.log(counter)
+            }
+        });
+        if(counter == 16) {
+            teriteri = true;
+        }
         this.setState({
             finalCards,
-            gatchaCards: [] });
+            gatchaCards: [],
+            daishouri: teriteri
+        });
     }
 
     start() {
@@ -74,6 +88,9 @@ class Honkai extends React.Component {
     }
 
     render() {
+        if(this.state.daishouri == true) {
+            alert("Teri Teri Daishouri!")
+        }
         return (
           React.createElement("div", { className: "honkai" },
 
